@@ -1,14 +1,15 @@
 package com.somegroup.marketplace.domain;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-
-import java.util.Set;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Table("refdata.users")
 public class User {
 
     private static final long serialVersionUID = 1L;
@@ -26,7 +27,7 @@ public class User {
 
     private String email;
 
-    private boolean activated = false;
+    private boolean activated;
 
     private String imageUrl;
 

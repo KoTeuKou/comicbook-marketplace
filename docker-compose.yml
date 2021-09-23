@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:13.3
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=marketplace-db
+      - POSTGRES_USER=marketplace-admin
+      - POSTGRES_PASSWORD=11111
+    volumes:
+      - marketplacedb:/var/lib/postgresql/data
+  app:
+    build:
+      context: services/app
+      dockerfile: Dockerfile.development
+    command: java -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000 -jar ./app.jar
+    environment:
+      - spring.r2dbc.url=r2dbc:postgresql://postgres:5432/marketplace-db
+      - spring.r2dbc.username=marketplace-admin
+      - spring.r2dbc.password=11111
+      - spring.flyway.enabled=true
+      - spring.flyway.url=jdbc:postgresql://postgres:5432/marketplace-db
+      - spring.flyway.user=marketplace-admin
+      - spring.flyway.password=11111
+    image: 'marketplace-app'
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+      - "8000:8000"
+volumes:
+  marketplacedb:
