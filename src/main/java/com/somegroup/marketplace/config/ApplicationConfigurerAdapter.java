@@ -54,11 +54,9 @@ public class ApplicationConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 .antMatchers("/protected/**").access("hasRole('USER')")
                 .antMatchers("/comicBook/**").access("hasRole('ADMIN')")
                 .antMatchers("/comicBook").access("hasRole('ADMIN')")
-                .antMatchers("/user/**").access("hasRole('ADMIN')")
-                .antMatchers("/user").access("hasRole('ADMIN')")
+                .antMatchers("/user/**").permitAll()
                 .and().formLogin().defaultSuccessUrl("/", false);
 
     }
-
 
 }

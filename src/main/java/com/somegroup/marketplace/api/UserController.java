@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("all")
+    @GetMapping
     public Flux<User> getAll() {
         return this.userService.getAllUsers();
     }
@@ -37,8 +37,8 @@ public class UserController {
         return this.userService.updateUser(userId, userMono);
     }
 
-    @DeleteMapping("/{id}")
-    public Mono<Void> deleteUser(@PathVariable long id) {
-        return this.userService.deleteUser(id);
+    @DeleteMapping("{userId}")
+    public Mono<Void> deleteUser(@PathVariable long userId) {
+        return this.userService.deleteUser(userId);
     }
 }

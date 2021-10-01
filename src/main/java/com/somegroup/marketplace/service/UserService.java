@@ -28,7 +28,10 @@ public class UserService {
     public Mono<User> updateUser(long userId, final Mono<User> userMono) {
         return this.repository.findById(userId)
                 .flatMap(user -> userMono.map(user1 -> {
-                    // TODO: copy
+                    user.setFirstName(user1.getFirstName());
+                    user.setLastName(user1.getLastName());
+                    user.setCity(user1.getCity());
+                    user.setCountry(user1.getCountry());
                     return user;
                 }))
                 .flatMap(user -> this.repository.save(user));

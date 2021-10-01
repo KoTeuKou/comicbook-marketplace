@@ -4,25 +4,25 @@ CREATE TABLE refdata.users (
     id bigint not null,
     login text not null,
     password text not null,
-    firstName text,
-    lastName text,
+    first_name text,
+    last_name text,
     email text not null,
-    activate boolean default false,
-    imageUrl text,
-    activationKey text,
-    resetKey text,
+    activated boolean default false,
+    activation_key text,
+    reset_key text,
+    image_path text,
     country text,
     city text
 );
 
 CREATE TABLE refdata.comic_book (
     id bigint not null,
-    tittle text not null,
+    title text not null,
     publisher text,
     writer text,
     artist text,
     price numeric(18, 6),
-    publicationDate timestamp with time zone,
+    publication_date timestamp with time zone,
     description text,
     condition float
 );
