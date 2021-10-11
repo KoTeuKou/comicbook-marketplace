@@ -62,6 +62,13 @@ class UserEdit extends Component {
             <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>
+                    <div className="row justify-content-center">
+                    <div className="col-8">
+                        <dd>
+                            <img src={item.imagePath? item.imagePath :
+                            'https://avatars.mds.yandex.net/get-pdb/2834774/717f6bd2-d0f6-4cda-a493-bf23e49d5792/s1200'}
+                            alt="none" width="250px"/>
+                        </dd>
                     <FormGroup>
                         <Label for="firstName">FirstName</Label>
                         <Input type="text" name="firstName" id="firstName" value={item.firstName || ''}
@@ -86,6 +93,8 @@ class UserEdit extends Component {
                         <Button color="primary" type="submit">Save</Button>{' '}
                         <Button color="secondary" tag={Link} to="/user">Cancel</Button>
                     </FormGroup>
+                    </div>
+                    </div>
                 </Form>
             </Container>
         </div>

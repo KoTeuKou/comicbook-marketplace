@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import { Button, ButtonGroup, Container, Table } from 'reactstrap';
+import React, {Component} from 'react';
+import {ButtonGroup, Container, Table} from 'reactstrap';
 import AppNavbar from '../App/AppNavbar';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faEye, faPencilAlt} from '@fortawesome/fontawesome-free-solid'
 
 class UserList extends Component {
 
@@ -31,7 +33,7 @@ class UserList extends Component {
     }
 
     render() {
-        const {users: users, isLoading} = this.state;
+        const {users, isLoading} = this.state;
 
         if (isLoading) {
             return <p>Loading...</p>;
@@ -39,14 +41,35 @@ class UserList extends Component {
 
         const userList = users.map(user => {
             return <tr key={user.id}>
+                <td>
+                    <Link to={"/user/" + user.id}>
+                        <img src={user.imagePath ? user.imagePath :
+                            'https://avatars.mds.yandex.net/get-pdb/2834774/717f6bd2-d0f6-4cda-a493-bf23e49d5792/s1200'}
+                             width="200px" alt="NANI?!"/>
+                    </Link>
+                </td>
                 <td style={{whiteSpace: 'nowrap'}}>{user.firstName}</td>
                 <td>{user.lastName}</td>
                 <td>{user.city}</td>
                 <td>{user.country}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/user/" + user.id}>Edit</Button>
-                        <Button size="sm" color="danger" onClick={() => this.remove(user.id)}>Delete</Button>
+                        <div style={{
+                            backgroundColor: 'lightcyan', borderRadius: '5px', padding: '5px', maxWidth: '55%'
+                        }}>
+                            <Link className={faEye} to={"/user/" + user.id}>
+                                <FontAwesomeIcon icon={faEye}/>
+                                <span>View</span>
+                            </Link>
+                        </div>
+                        <div style={{
+                            backgroundColor: 'lightyellow', borderRadius: '5px', padding: '5px', maxWidth: '55%'
+                        }}>
+                            <Link to="/">
+                                <FontAwesomeIcon icon={faPencilAlt}/>
+                                <span>Write message</span>
+                            </Link>
+                        </div>
                     </ButtonGroup>
                 </td>
             </tr>
@@ -56,26 +79,28 @@ class UserList extends Component {
             <div>
                 <AppNavbar/>
                 <Container fluid>
-                    <div className="float-right">
-                        <Button color="success" tag={Link} to="/user/new">Add User</Button>
-                    </div>
                     <h3>Users</h3>
-                    <Table className="mt-4">
-                        <thead>
-                        <tr>
-                            <th width="30%">Name</th>
-                            <th width="30%">Surname</th>
-                            <th width="20%">City</th>
-                            <th width="20%">Country</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {userList}
-                        </tbody>
-                    </Table>
+                    <div className="table-responsive">
+                        <Table className="mt-4">
+                            <thead>
+                            <tr>
+                                <th/>
+                                <th width="30%">Name</th>
+                                <th width="30%">Surname</th>
+                                <th width="20%">City</th>
+                                <th width="20%">Country</th>
+                                <th width="5%"/>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {userList}
+                            </tbody>
+                        </Table>
+                    </div>
                 </Container>
             </div>
         );
     }
 }
+
 export default UserList;

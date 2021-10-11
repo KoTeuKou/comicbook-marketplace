@@ -3,6 +3,7 @@ package com.somegroup.marketplace.service;
 import com.somegroup.marketplace.domain.User;
 import com.somegroup.marketplace.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -13,6 +14,9 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public Flux<User> getAllUsers() {
         return this.repository.findAll();
     }
@@ -22,6 +26,7 @@ public class UserService {
     }
 
     public Mono<User> createUser(final User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return this.repository.save(user);
     }
 
