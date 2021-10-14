@@ -70,12 +70,12 @@ class UserEdit extends Component {
                             alt="none" width="250px"/>
                         </dd>
                     <FormGroup>
-                        <Label for="firstName">FirstName</Label>
+                        <Label for="firstName">First Name</Label>
                         <Input type="text" name="firstName" id="firstName" value={item.firstName || ''}
                                onChange={this.handleChange} autoComplete="name"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="lastName">FirstName</Label>
+                        <Label for="lastName">Last Name</Label>
                         <Input type="text" name="lastName" id="lastName" value={item.lastName || ''}
                                onChange={this.handleChange} autoComplete="surname"/>
                     </FormGroup>

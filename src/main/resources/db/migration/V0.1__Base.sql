@@ -1,7 +1,7 @@
 CREATE SCHEMA IF NOT EXISTS refdata;
 
 CREATE TABLE refdata.users (
-    id bigint not null,
+    id serial primary key,
     login text not null,
     password text not null,
     first_name text,
@@ -16,7 +16,7 @@ CREATE TABLE refdata.users (
 );
 
 CREATE TABLE refdata.comic_book (
-    id bigint not null,
+    id serial primary key,
     title text not null,
     publisher text,
     writer text,
