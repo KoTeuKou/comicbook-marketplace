@@ -12,5 +12,6 @@ public class MarketplaceUnitTests {
         PasswordEncoder passwordEncoder = new StandardPasswordEncoder();
         String encodedPassword = passwordEncoder.encode("password");
         Assertions.assertNotEquals(encodedPassword, "password");
+        System.out.println("Check pull request");
     }
 }
