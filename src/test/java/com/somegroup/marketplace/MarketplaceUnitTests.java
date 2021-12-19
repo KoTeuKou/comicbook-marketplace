@@ -9,6 +9,7 @@ public class MarketplaceUnitTests {
 
     @Test
     public void testForNothing() {
+        System.out.println("Just check x2");
         PasswordEncoder passwordEncoder = new StandardPasswordEncoder();
         String encodedPassword = passwordEncoder.encode("password");
         Assertions.assertNotEquals(encodedPassword, "password");
