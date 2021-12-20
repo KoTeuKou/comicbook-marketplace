@@ -23,7 +23,7 @@ services:
       - spring.flyway.url=jdbc:postgresql://postgres:5432/marketplace-db
       - spring.flyway.user=marketplace-admin
       - spring.flyway.password=11111
-      - spring.flyway.locations=/usr/local/app/db/migration
+      - flyway.locations=/usr/local/app/db/migration
     image: 'marketplace-app'
     depends_on:
       - postgres
