@@ -1,0 +1,6 @@
+{
+  "hideGenerationTimestamp": true,
+  "dateLibrary": "java8",
+  "modelPackage": "com.somegroup.marketplace.swagger.entities",
+  "library": "jersey1"
+}
