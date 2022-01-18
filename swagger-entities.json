@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Test API",
-    "description": "Something",
+    "description": "Something interesting",
     "version": "1.0"
   },
   "components": {
