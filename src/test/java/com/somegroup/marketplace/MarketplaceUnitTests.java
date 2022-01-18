@@ -11,6 +11,6 @@ public class MarketplaceUnitTests {
     public void testForNothing() {
         PasswordEncoder passwordEncoder = new StandardPasswordEncoder();
         String encodedPassword = passwordEncoder.encode("password");
-        Assertions.assertNotEquals(encodedPassword, "password");
+        Assertions.assertNotEquals(encodedPassword, "password+");
     }
 }
