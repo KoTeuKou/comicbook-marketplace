@@ -42,6 +42,10 @@ dependencies {
 	implementation 'io.gsonfire:gson-fire:1.8.3'
 }
 
+ext {
+	buildNum = System.getenv("BUILD_NUMBER") != null ? System.getenv("BUILD_NUMBER") : 0
+}
+
 test {
 	useJUnitPlatform()
 }
@@ -57,4 +61,11 @@ task generateEntities(type: Exec) {
 	outputs.dir("${projectDir}/src/main/java/com/somegroup/marketplace/swagger/entities")
 }
 compileJava.dependsOn(generateEntities)
+
+jar {
+	if (buildNum != 0) {
+		version = version + '.' + buildNum
+	}
+	archiveFileName = "marketpace-webapp-${version}.jar"
+}
 
