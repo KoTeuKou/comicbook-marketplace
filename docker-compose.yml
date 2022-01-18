@@ -10,6 +10,8 @@ services:
       - POSTGRES_PASSWORD=11111
     volumes:
       - marketplacedb:/var/lib/postgresql/data
+    networks:
+      - marketplace_network
   app:
     build:
       context: .
@@ -30,5 +32,10 @@ services:
     ports:
       - "8080:8080"
       - "8000:8000"
+    networks:
+      - marketplace_network
 volumes:
   marketplacedb:
+networks:
+  marketplace_network:
+    name: ${MARKETPLACE_NETWORK}
