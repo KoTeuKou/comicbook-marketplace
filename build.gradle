@@ -55,11 +55,16 @@ task copyFile(type: Copy) {
 	into layout.projectDirectory.dir("services/app")
 }
 
+task clearOldBuilds(type: Delete) {
+	delete "${buildDir}/libs"
+}
+
 task generateEntities(type: Exec) {
 	commandLine "java", "-jar", "swagger-codegen-cli.jar", "generate", "-iswagger-entities.json", "-ljava", "-cswagger-generate-config.json"
 	inputs.file "swagger-entities.json"
 	outputs.dir("${projectDir}/src/main/java/com/somegroup/marketplace/swagger/entities")
 }
+compileJava.dependsOn(clearOldBuilds)
 compileJava.dependsOn(generateEntities)
 
 jar {
